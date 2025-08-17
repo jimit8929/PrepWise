@@ -3,7 +3,7 @@
 @import "tailwindcss";
 
 
-@theme{
+:root{
   --font-display : "Urbanist" , sans-serif;
   ----breakpoint-3xl : 1920px;
   --color-primary : #FF9324;
@@ -60,7 +60,7 @@
     66% {transform: translate(20px,-40px) scale(0.95);}
   }
 
-  @keyframes blob1{
+  @keyframes blob3{
     0%, 100% {transform: translate(0px,0px) scale(1);}
     33% {transform: translate(20px,140px) scale(1.15);}
     66% {transform: translate(-30px,-30px) scale(0.85);}
@@ -70,11 +70,11 @@
     animation : blob1 8s ease-in-out infinite;
   }
 
-    .animate-blob2{
+  .animate-blob2{
     animation : blob2 10s ease-in-out infinite;
   }
 
-    .animate-blob3{
+  .animate-blob3{
     animation : blob3 12s ease-in-out infinite;
   }
 }
@@ -90,6 +90,6 @@
 
 
 .btn-small{
-  @apply flex items-center justify-center gap-3 bg-linear-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300
+  @apply flex items-center justify-center gap-3 bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2 rounded-lg hover:bg-black hover:text-white transition-colors cursor-pointer hover:shadow-2xl hover:shadow-orange-300
 }
 

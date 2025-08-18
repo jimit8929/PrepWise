@@ -5,6 +5,10 @@ import dotenv from "dotenv"
 import connectDB from "./config/DB.config.js";
 import { fileURLToPath } from "url";
 
+
+dotenv.config();
+
+
 //importing Routes
 import authRoutes from "./routes/auth.routes.js";
 import sessionRoutes from "./routes/Session.routes.js"
@@ -12,6 +16,7 @@ import questionRoutes from "./routes/Questions.routes.js";
 
 //Middlewares
 import protect from "./middlewares/Auth.middleware.js";
+import { generateConceptExplanantion, generateInterviewQuestions } from "./controllers/AI.controller.js";
 
 
 
@@ -29,7 +34,7 @@ app.use(cors({
 })
 );
 
-dotenv.config();
+
 connectDB();
 
 
@@ -43,9 +48,9 @@ app.use("/api/auth" , authRoutes);
 app.use("/api/sessions" , sessionRoutes);
 app.use("/api/questions", questionRoutes);
 
-app.use("api/ai/generate-questions" , protect , generateInterviewQuestions);
+app.post("/api/ai/generate-questions" , protect , generateInterviewQuestions);
 
-// app.use("/api/ai/generate-explanation" , protect , generateConceptExplanantion);
+app.post("/api/ai/generate-explanation" , protect , generateConceptExplanantion);
 
 
 

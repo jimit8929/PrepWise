@@ -5,6 +5,10 @@ import dotenv from "dotenv"
 import connectDB from "./config/DB.config.js";
 import { fileURLToPath } from "url";
 
+//importing Routes
+import authRoutes from "./routes/auth.routes.js";
+import protect from "./middlewares/Auth.middleware.js";
+
 
 const app = express();
 
@@ -30,6 +34,14 @@ app.use(express.json());
 
 
 //Routes
+app.use("/api/auth" , authRoutes);
+// app.use("/api/sessions" , sessionRoutes);
+// app.use("/api/question", questionRoutes);
+
+// app.use("api/ai/generate-questions" , protect , generateInterviewQuestions);
+
+// app.use("/api/ai/generate-explanation" , protect , generateConceptExplanantion);
+
 
 
 

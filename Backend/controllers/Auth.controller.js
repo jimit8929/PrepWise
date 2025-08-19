@@ -50,16 +50,20 @@ export const loginUser = async(req , res) => {
   try{
     const {email , password} = req.body;
 
+    if (!email || !password) {
+      return res.status(400).json({ message: "Email and password are required" });
+    }
+
     const user = await User.findOne({email});
 
     if(!user){
-      return res.status(500).json({message : "Invalid email or password"});
+      return res.status(401).json({message : "Invalid email or password"});
     }
 
     const isMatchPassword = await bcrypt.compare(password , user.password);
 
     if(!isMatchPassword){
-      res.status(500).json({message : "Invalid email"});
+      res.status(401).json({message : "Invalid email or password"});
     }
 
     res.json({
@@ -71,7 +75,8 @@ export const loginUser = async(req , res) => {
     });
   }
   catch(error){
-    res.status(500).json({message : "server error" , error:error.message});
+    console.error("LoginUser Error:" , error);
+    return res.status(500).json({message : "server error" , error:error.message});
   }
 }
 

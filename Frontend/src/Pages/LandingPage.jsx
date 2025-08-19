@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Hero_Img from "../assets/TaskJoy_Dashboard.png";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { LuSparkles } from "react-icons/lu";
 
 import { APP_FEATURES } from "../utils/data.js";
@@ -8,13 +8,25 @@ import Model from "../components/Model.jsx";
 
 import Login from "./Auth/Login.jsx"
 import SignUp from "./Auth/SignUp.jsx"
+import { UserContext } from "../context/useContext.jsx";
+
+import ProfileInfoCard from "../components/Cards/ProfileInfoCard.jsx";
 
 const LandingPage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const [openAuthModel, setOpenAuthModel] = useState(false);
   const [currentPage, setCurrentPage] = useState("login");
 
-  const handleCTA = () => {};
+  const {user} = useContext(UserContext);
+
+  const handleCTA = () => {
+    if(!user){
+      setOpenAuthModel(true);
+    }
+    else{
+      navigate("/dashboard");
+    }
+  };
 
   return (
     <>
@@ -28,13 +40,15 @@ const LandingPage = () => {
           <header className="flex justify-between items-center py-6 mb-12 md:mb-16">
             <div className="text-3xl text-black font-bold">PrepWise AI</div>
 
-            <button
+             {user ? ( <ProfileInfoCard/> ) : ( 
+              <button
               className="bg-gradient-to-r from-[#FF9324] to-[#e99a4b] text-sm font-semibold text-white px-7 py-2.5 rounded-full 
                          hover:bg-black hover:text-white border border-transparent transition-colors cursor-pointer"
               onClick={() => setOpenAuthModel(true)}
             >
               Login / SignUp
             </button>
+             )}
           </header>
 
           {/* Hero content */}

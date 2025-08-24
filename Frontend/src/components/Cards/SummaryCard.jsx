@@ -1,4 +1,6 @@
 import React from "react";
+import {LuTrash} from "react-icons/lu"
+import { getInitials } from "../../utils/helper.js";
 
 const SummaryCard = ({
   colors,
@@ -16,7 +18,7 @@ const SummaryCard = ({
       <div className="rounded-lg p-4 cursor-pointer relative" style={{ background: colors.bgcolor }}>
         <div className="flex items-start">
           <div className="flex-shrink-0 w-12 h-12 bg-white rounded-md flex items-center justify-center mr-4">
-            <span className="text-lg font-semibold text-black">GU</span>
+            <span className="text-lg font-semibold text-black">{getInitials(role)}</span>
           </div>
 
           <div className="flex-grow">
@@ -36,7 +38,7 @@ const SummaryCard = ({
             onDelete();
           }}
         >
-          delete
+          <LuTrash/>
         </button>
       </div>
 

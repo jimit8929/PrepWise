@@ -10,6 +10,8 @@ import axiosInstance from "../../utils/axiosInstance.js";
 import { API_PATHS } from "../../utils/apiPaths.js";
 import SummaryCard from "../../components/Cards/SummaryCard.jsx";
 
+import Model from "../../components/Model.jsx";
+import CreateSessionForm from "./CreateSessionForm.jsx";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -63,6 +65,20 @@ const Dashboard = () => {
           Add New 
         </button>
       </div>
+
+
+      <Model isOpen={openCreateModal}
+      onClose={() => {
+        setOpenCreateModal(false);
+      }}
+      hideHeader
+      >
+
+      <div>
+        <CreateSessionForm/>
+      </div>
+      </Model>
+
     </DashBoardLayout>
   )
 }

@@ -10,7 +10,7 @@ import RoleInfoHeader from "./components/RoleInfoHeader";
 import axiosInstance from "../../utils/axiosInstance.js";
 import { API_PATHS } from "../../utils/apiPaths";
 import QuestionCard from "../../components/Cards/QuestionCard.jsx";
-import AIResponsePreview from "./components/AiResponsePreview.jsx";
+import AIResponsePreview from "./components/AIResponsePreviewSetup.jsx"
 import Drawer from "../../components/Drawer.jsx";
 import SkeletonLoader from "../../components/Loader/SkeletonLoader.jsx";
 

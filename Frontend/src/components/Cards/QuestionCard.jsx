@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { LuChevronDown, LuPin, LuPinOff, LuSparkles } from "react-icons/lu";
-import AIResponsePreview from "../../Pages/InterviewPrep/components/AiResponsePreview";
+import AIResponsePreview from "../../Pages/InterviewPrep/components/AIResponsePreviewSetup";
 
 const QuestionCard = ({
   question,

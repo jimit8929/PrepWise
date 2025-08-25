@@ -10,7 +10,7 @@ dotenv.config();
 
 
 //importing Routes
-import authRoutes from "./routes/auth.routes.js";
+import authRoutes from "./routes/Auth.routes.js";
 import sessionRoutes from "./routes/Session.routes.js"
 import questionRoutes from "./routes/Questions.routes.js";
 

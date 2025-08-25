@@ -20,5 +20,4 @@ router.post("/upload-image" , upload.single("image") , (req , res) => {
   res.status(200).json({imageUrl});
 })
 
-
 export default router;

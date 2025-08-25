@@ -12,6 +12,7 @@ import SummaryCard from "../../components/Cards/SummaryCard.jsx";
 
 import Model from "../../components/Model.jsx";
 import CreateSessionForm from "./CreateSessionForm.jsx";
+import DeleteAlertContent from "../../components/DeleteAlertContent.jsx";
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -33,7 +34,21 @@ const Dashboard = () => {
   }
 
   const deleteSession = async(sessionData) => {
+    try{
+    await axiosInstance.delete(API_PATHS.SESSION.DELETE(sessionData?._id));
+    
+    toast.success("Session Deleted Successfully");
 
+    setOpenDeleteAlert({
+      open : false,
+      data:null
+    });
+
+    fetchAllSessions();
+    }
+    catch(error){
+      console.error("Error deleing session data:" , error);
+    }
   };
 
   useEffect(() => {
@@ -54,7 +69,7 @@ const Dashboard = () => {
   questions={data?.questions?.length || "-"}
   description={data?.description || ""}
   lastUpdated={data?.updatedAt ? moment(data.updatedAt).format("Do MMMM YYYY") : ""}
-  onSelect={() => navigate(`/interview-prem/${data?._id}`)}
+  onSelect={() => navigate(`/interview-prep/${data?._id}`)}
   onDelete={() => setOpenDeleteAlert({ open: true, data })}
 />
           ))}
@@ -77,6 +92,17 @@ const Dashboard = () => {
       <div>
         <CreateSessionForm/>
       </div>
+      </Model>
+
+      <Model isOpen={openDeleteALert?.open}
+      onClose={() => {
+        setOpenDeleteAlert({open : false , data : null});
+      }} title="Delete Alert">
+
+        <div className="w-[30vw]">
+          <DeleteAlertContent content="Are you sure you want to delete this session detail?" onDelete={() => deleteSession(openDeleteALert.data)}/>
+        </div>
+
       </Model>
 
     </DashBoardLayout>

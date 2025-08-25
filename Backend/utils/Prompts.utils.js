@@ -6,7 +6,7 @@ export const questionAnswerPrompt = (role , experience , topicsToFocus , numberO
   -Candidate Experience: ${experience} years
   -Focus Topics: ${topicsToFocus}
   -Write ${numberOfQuestions} interview questions.
-  -For each question, generate a beginner-friendly answer of approx 2-3 lines.
+  -For each question, generate a beginner-friendly answer of minimum 2-4 lines.
   -If the answer needs a code example, add a small code block inside.
   -Keep formatting very Clean.
   -Return a pure JSON array like:

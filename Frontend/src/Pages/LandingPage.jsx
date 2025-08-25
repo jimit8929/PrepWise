@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import Hero_Img from "../assets/TaskJoy_Dashboard.png";
+import Hero_Img from "../assets/Prepwise_LandingPage.png";
 import { useNavigate } from "react-router-dom";
 import { LuSparkles } from "react-icons/lu";
 

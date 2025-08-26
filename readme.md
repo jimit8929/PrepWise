@@ -1,7 +1,8 @@
 <h1>
-  <img src="./Frontend/src/assets/img_2.png" alt="PrepWise AI Logo" width="40" style="vertical-align: middle; margin-right: 10px;" />
+  <img src="./Frontend/src/assets/img_2.png" alt="PrepWise AI Logo" width="40" style="vertical-align: text-bottom; margin-right: 10px;" />
   PrepWise AI
 </h1>
+
 
 
 

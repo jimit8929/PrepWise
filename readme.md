@@ -1,8 +1,7 @@
-<div style="display: flex; align-items: center; gap: 10px;">
-  <img src="./Frontend/src/assets/img_2.png" alt="PrepWise AI Logo" width="40"/>
-  <h1 style="margin: 0;">PrepWise AI</h1>
-</div>
-
+<h1>
+  <img src="./Frontend/src/assets/img_2.png" alt="PrepWise AI Logo" width="40" style="vertical-align: -6px; margin-right: 10px;" />
+  PrepWise AI
+</h1>
 
 
 A smart AI-powered interview preparation application delivers role-specific interview questions and model answers powered by Google Gemini.

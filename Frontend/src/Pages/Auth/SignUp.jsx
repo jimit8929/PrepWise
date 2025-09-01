@@ -17,6 +17,8 @@ const SignUp = ({setCurrentPage}) => {
   const [email , setEmail] = useState("");
   const [password , setPassword] = useState("");
 
+  const [loading, setLoading] = useState(false);
+
   const [error , setError] = useState(null);
 
   const {updateUser} = useContext(UserContext);
@@ -41,6 +43,8 @@ const SignUp = ({setCurrentPage}) => {
       setError("Please enter the password");
       return;
     }
+
+    setLoading(true);
 
     try{
       //upload image if present
@@ -73,10 +77,13 @@ const SignUp = ({setCurrentPage}) => {
         setError("Something went wrong. Please try again");
       }
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   return (
-    <div className='w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center '>
+    <div className="w-full max-w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center mx-auto overflow-x-hidden">
       <h3 className='text-lg font-semibold text-black'>Create an Account</h3>
       <p className="text-xs text-slate-700 mt-[5px] mb-6">Join us today by entering your details below</p>
 
@@ -112,10 +119,20 @@ const SignUp = ({setCurrentPage}) => {
 
       {error && <p className='text-red-500 text-xs pb-2.5'>{error}</p> }
 
-      <button type='submit' className='btn-primary'>SIGN UP</button>
+      <button type='submit' className='btn-primary  w-full disabled:opacity-80'>
+         {loading ? (
+            <>
+              <SpinnerLoader />
+              <span>Signing in...</span>
+            </>
+          ) : (
+            "SIGNUP"
+          )}
 
-      <p className='text-[13px] text-slate-800 mt-3'>Already have an Account?{" "}
-        <button className='font-medium text-primary underline cursor-pointer' onClick={() => setCurrentPage("login")}>
+      </button>
+
+      <p className='text-sm text-slate-800 mt-5 flex items-center justify-center gap-1'>Already have an Account?{" "}
+        <button className='font-bold text-primary underline cursor-pointer' onClick={() => setCurrentPage("login")}>
           Login
         </button>
       </p>

@@ -78,7 +78,7 @@ const CreateSessionForm = () => {
   };
 
   return (
-    <div className="w-[90vw] md:w-[35vw] p-7 flex flex-col justify-center">
+    <div className="w-full max-w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center mx-auto overflow-x-hidden">
       <h3 className="text-lg font-semibold text-black">
         Start a New Interview Journey
       </h3>

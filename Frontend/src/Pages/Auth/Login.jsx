@@ -6,11 +6,15 @@ import { API_PATHS } from "../../utils/apiPaths.js";
 
 import { useNavigate } from "react-router-dom";
 import { UserContext } from "../../context/useContext.jsx";
+import SpinnerLoader from "../../components/Loader/SpinnerLoader.jsx";
 
 const Login = ({ setCurrentPage }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+
+   const [loading, setLoading] = useState(false); 
+
 
   const {updateUser} = useContext(UserContext);
 
@@ -29,6 +33,7 @@ const Login = ({ setCurrentPage }) => {
       setError("Please enter the password");
     }
     setError("");
+    setLoading(true);
 
     try {
       const response = await axiosInstance.post(API_PATHS.AUTH.LOGIN, {
@@ -53,10 +58,13 @@ const Login = ({ setCurrentPage }) => {
         setError("Something went wrong. Please try again.");
       }
     }
+    finally{
+      setLoading(false);
+    }
   };
 
   return (
-    <div className="w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center">
+   <div className="w-full max-w-[90vw] md:w-[33vw] p-7 flex flex-col justify-center mx-auto overflow-x-hidden">
       <h3 className="text-xl font-semibold text-black">Welcome Back</h3>
       <p className="text-sm text-slate-700 mt-1 mb-6">
         Please enter your details to log in
@@ -81,15 +89,23 @@ const Login = ({ setCurrentPage }) => {
 
         {error && <p className="text-red-500 text-xs">{error}</p>}
 
-        <button type="submit" className="btn-primary w-full">
-          LOGIN
+        <button type="submit" className="btn-primary w-full disabled:opacity-80"
+        disabled={loading}>
+           {loading ? (
+            <>
+              <SpinnerLoader />
+              <span>Logging in...</span>
+            </>
+          ) : (
+            "LOGIN"
+          )}
         </button>
 
-        <p className="text-sm text-slate-800 mt-3 text-center">
-          Don&apos;t have an account?{" "}
+        <p className="text-sm text-slate-800 mt-3 flex items-center justify-center gap-1">
+          Don&apos;t have an account?{""}
           <button
             type="button" // ✅ prevents form submission
-            className="font-medium text-primary underline cursor-pointer"
+            className="font-bold text-primary underline cursor-pointer"
             onClick={() => setCurrentPage("signup")}
           >
             Sign Up

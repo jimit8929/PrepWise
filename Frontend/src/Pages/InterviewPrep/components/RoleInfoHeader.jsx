@@ -36,12 +36,32 @@ const RoleInfoHeader = ({
         </div>
       </div>
 
-      <div className="w-[40vw] md:w-[30vw] h-[200px] flex items-center justify-center bg-white overflow-hidden absolute top-0 right-0">
-        <div className="w-16 h-16 bg-lime-400 blur-[65px] animate-blob1"/>
-        <div className="w-16 h-16 bg-teal-400 blur-[65px] animate-blob2"/>
-        <div className="w-16 h-16 bg-cyan-300 blur-[45px] animate-blob3"/>
-        <div className="w-16 h-16 bg-fuchsia-200 blur-[45px] animate-blob1"/>
-      </div>
+{/* Mobile view (top & bottom) */}
+{/* Mobile view (top & bottom blobs) */}
+{/* Mobile-only optimized blobs (top & bottom) */}
+<div className="block md:hidden pointer-events-none" aria-hidden="true">
+  {/* Top blobs - spread left & right with different sizes/blur for depth */}
+  <div className="absolute top-0 left-0 w-full h-[100px] flex items-center justify-between px-6 overflow-hidden">
+    <div className="w-16 h-16 bg-lime-400 rounded-full blur-[70px] opacity-90 -translate-x-6 transform" />
+    <div className="w-20 h-20 bg-teal-400 rounded-full blur-[60px] opacity-80 translate-x-6 transform" />
+  </div>
+
+  {/* Bottom blobs - slightly different sizing/blur so they don't mirror exactly */}
+  <div className="absolute bottom-0 left-0 w-full h-[100px] flex items-center justify-between px-6 overflow-hidden">
+    <div className="w-20 h-20 bg-cyan-300 rounded-full blur-[50px] opacity-80 -translate-x-4 transform" />
+    <div className="w-16 h-16 bg-fuchsia-600 rounded-full blur-[45px] opacity-85 translate-x-8 transform" />
+  </div>
+</div>
+
+
+
+{/* Desktop / md+ view (right side) */}
+<div className="hidden md:flex w-[30vw] h-[200px] items-center justify-center bg-white overflow-hidden absolute top-0 right-0">
+  <div className="w-16 h-16 bg-lime-400 blur-[65px] animate-blob1"/>
+  <div className="w-16 h-16 bg-teal-400 blur-[65px] animate-blob2"/>
+  <div className="w-16 h-16 bg-cyan-300 blur-[45px] animate-blob3"/>
+  <div className="w-16 h-16 bg-fuchsia-200 blur-[45px] animate-blob1"/>
+</div>
 
     </div>
   </div>;

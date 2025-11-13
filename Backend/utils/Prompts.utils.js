@@ -1,45 +1,59 @@
-export const questionAnswerPrompt = (role , experience , topicsToFocus , numberOfQuestions) => (
-  `You are an AI trained to generate techinical interview questions and answers.
-  
-  Task:
-  -Role: ${role}
-  -Candidate Experience: ${experience} years
-  -Focus Topics: ${topicsToFocus}
-  -Write ${numberOfQuestions} interview questions.
-  -For each question, generate a beginner-friendly answer of minimum 2-4 lines.
-  -If the answer needs a code example, add a small code block inside.
-  -Keep formatting very Clean.
-  -Return a pure JSON array like:
-  [
-    {
-      "question" : "Question here?",
-      "answer" : "Answer here."
-    },
-    ...
-  ]
-  
-  Important: DO not add any extra text. only return valid json.
-  `)
+export const questionAnswerPrompt = (role, experience, topicsToFocus, numberOfQuestions) => `You are an AI trained to generate technical interview questions and answers.
 
+TASK:
+- Role: ${role}
+- Candidate Experience: ${experience} years
+- Focus Topics: ${topicsToFocus}
+- Generate exactly ${numberOfQuestions} interview questions
+- For each question, provide a beginner-friendly answer (2-4 lines minimum)
+- Include code examples where relevant using markdown syntax
+- Ensure clean formatting
 
-export const conceptExplainPrompt = (question) => (
-`
-You are an AI trained to generate explanations for a given interview question.
+OUTPUT FORMAT:
+Return ONLY a valid JSON array with NO additional text, explanations, or markdown wrappers.
 
-Task:
--Explain the following interview question and it's concept in depth as if you're teaching a beginner developer.
--Question: "${question}"
--After the explanation, provide a short and clear title that summarizes the concept for the article or page header.
--If the explanation includes a code example, provide a small code block.
--Keep the formatting very clean and clear
--Return the result as a valid json object in the following format:
+Expected structure:
+[
+  {
+    "question": "Interview question text here?",
+    "answer": "Detailed answer here with markdown formatting if needed."
+  }
+]
 
+CRITICAL RULES:
+1. Return ONLY the JSON array - no text before or after
+2. NO markdown code blocks (no \`\`\`json or \`\`\`)
+3. Use proper JSON escaping for quotes and special characters
+4. Ensure valid JSON syntax with double quotes
+5. No trailing commas
+
+JSON:`; // ✅ Output prefix signals JSON format
+
+export const conceptExplainPrompt = (question) => `You are an AI trained to explain technical interview concepts in depth.
+
+TASK:
+- Explain this interview question as if teaching a beginner developer
+- Question: "${question}"
+- Provide in-depth conceptual explanation
+- Include code examples where helpful using markdown syntax
+- Generate a short, clear title for the concept
+- Keep formatting clean and structured
+
+OUTPUT FORMAT:
+Return ONLY a valid JSON object with NO additional text, explanations, or markdown wrappers.
+
+Expected structure:
 {
-"title" : "Short title here?",
-"explanation" : "Explanation here."
+  "title": "Short descriptive title",
+  "explanation": "Detailed markdown-formatted explanation with code examples if needed"
 }
 
-Important: Do not add any extra text outside the JSON format. only return valid JSON
-`)
+CRITICAL RULES:
+1. Return ONLY the JSON object - no text before or after
+2. NO markdown code blocks (no \`\`\`json or \`\`\`)
+3. Use proper JSON escaping for quotes and special characters
+4. Ensure valid JSON syntax with double quotes
+5. No trailing commas
+6. Markdown formatting INSIDE the explanation field is allowed and encouraged
 
-
+JSON:`;
